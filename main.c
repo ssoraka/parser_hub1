@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ssoraka <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 16:23:42 by ssoraka           #+#    #+#             */
-/*   Updated: 2019/03/07 16:22:42 by ssoraka          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -17,6 +5,7 @@
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <fcntl.h>
+#define size_t unsigned long
 
 size_t	ft_strlen(const char *str)
 {
@@ -36,7 +25,7 @@ void	ft_putstr_fd(char const *s, int fd)
 
 char	*ft_strcpy(char *dest, const char *src)
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
 	while (src[i] != '\0')
@@ -216,11 +205,11 @@ char	*ft_find_pattern(char *str)
 	fail = 0;
 	answer = ft_strstr(str, "icmppingloss");
 	if (answer)
-		answer = ft_strstr(str, "value");
+		answer = ft_strstr(answer, "value");
 	if (answer)
 		answer = answer + 8;
 	temp = answer;
-	while (temp && *temp != ',')
+	while (temp && *temp != ',' && *temp != '}')
 		temp++;
 	if (answer)
 		answer = ft_strndup(answer, temp - answer);
